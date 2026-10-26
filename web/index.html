@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Subnet Scanner</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>Subnet Finder</h1>
+      <p class="lede">Select local subnets, then scan for active devices (ICMP ping and common TCP ports).</p>
+    </header>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Available subnets</h2>
+        <button type="button" id="refresh" class="ghost">Refresh</button>
+      </div>
+      <div id="subnets" class="subnet-list"></div>
+      <p id="subnet-empty" class="muted hidden">No IPv4 subnets found. Check that an interface is up.</p>
+      <p id="large-warning" class="warn hidden">A selected subnet is larger than /22 and may take a while.</p>
+    </section>
+
+    <div class="actions">
+      <button type="button" id="scan" class="primary" disabled>Scan</button>
+      <button type="button" id="cancel" class="ghost" disabled>Cancel</button>
+    </div>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Progress</h2>
+        <span id="progress-label" class="muted">Idle</span>
+      </div>
+      <div class="bar"><div id="bar-fill"></div></div>
+      <p id="status" class="status"></p>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Active devices</h2>
+        <span id="live-count" class="muted">0 found</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>IP</th>
+              <th>Hostname</th>
+              <th>Method</th>
+              <th>Open ports</th>
+            </tr>
+          </thead>
+          <tbody id="results"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
